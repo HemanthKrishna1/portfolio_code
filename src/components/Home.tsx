@@ -13,6 +13,7 @@ import {
   KeyboardArrowDown,
 } from "@mui/icons-material";
 import { Link } from "react-scroll";
+import profileImage from "./Hemanth-Krishna.png";
 
 const Home: React.FC = () => {
   return (
@@ -299,7 +300,7 @@ const Home: React.FC = () => {
             >
               <Avatar
                 alt="Hemanth Krishna"
-                src="/Users/hemanth/Desktop/ullas-port/src/assets/profile.jpeg"
+                src={profileImage}
                 sx={{
                   width: 280,
                   height: 280,
