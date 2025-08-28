@@ -19,7 +19,11 @@ import {
   CalendarToday,
   KeyboardArrowLeft,
   KeyboardArrowRight,
+  Business as BusinessIcon,
 } from "@mui/icons-material";
+import nxpLogo from "../assets/logos/nxp.png";
+import amagiLogo from "../assets/logos/amagi.png";
+import blueYonderLogo from "../assets/logos/blueyonder.png";
 
 interface WorkExperience {
   title: string;
@@ -34,6 +38,47 @@ interface WorkExperience {
   color: string;
 }
 
+const CompanyLogo: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+  const [imgError, setImgError] = useState(false);
+
+  if (imgError) {
+    return (
+      <Box
+        sx={{
+          width: 70,
+          height: 70,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "white",
+          borderRadius: 2,
+          boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+        }}
+      >
+        <BusinessIcon sx={{ fontSize: 40, color: "primary.main" }} />
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt={alt}
+      onError={() => setImgError(true)}
+      sx={{
+        width: 70,
+        height: 70,
+        objectFit: "contain",
+        p: 1,
+        borderRadius: 2,
+        backgroundColor: "white",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+      }}
+    />
+  );
+};
+
 const Work: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -43,6 +88,45 @@ const Work: React.FC = () => {
 
   const workExperiences: WorkExperience[] = [
     {
+      title: "Software Engineer I",
+      company: "Blue Yonder",
+      location: "Dallas, TX",
+      duration: "August 2025 - Present",
+      period: "Ongoing",
+      description:
+        "Blue Yonder is a leading provider of supply chain management solutions, leveraging AI and machine learning to optimize retail, logistics, and manufacturing operations.",
+      achievements: [
+        "Upgraded React Query from v3 to v5 across enterprise application, reducing bundle size by 15% and improving memory efficiency through modernized infinite query caching with maxPages optimization.",
+        "Increased component test coverage from 75% to 90% by implementing integration testing strategy and MSW (Mock Service Worker) for realistic API mocking, while optimizing test architecture.",
+      ],
+      skills: [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Redux",
+        "React Query",
+        "Material UI",
+        "Tailwind CSS",
+        "HTML",
+        "CSS",
+        "Java",
+        "Spring Boot",
+        "Go",
+        "gRPC",
+        "Protobufs",
+        "PostgreSQL",
+        "Docker",
+        "Kubernetes",
+        "Jest",
+        "MSW",
+        "Maven",
+        "Git",
+        "GitHub",
+      ],
+      color: "#231F20",
+      logo: blueYonderLogo,
+    },
+    {
       title: "Software Engineer Intern",
       company: "NXP Semiconductors",
       location: "San Jose, CA",
@@ -51,28 +135,31 @@ const Work: React.FC = () => {
       description:
         "NXP Semiconductors is a global leader in secure connectivity solutions for embedded applications, driving innovation in automotive, industrial, IoT, and mobile industries.",
       achievements: [
-        "Streamlined operations for 5 cross-functional teams by implementing dynamic user roles and automated email notifications, reducing inventory request processing time by 30%.",
-        "Developed a Django-powered tool to systematically recognize regression issues in JIRA, enhancing issue management processes across 3 projects.",
-        "Integrated a Python backend API to parse AXF files, generate & analyze an Excel report in UI using Django & Svelte, with server-side pagination for semiconductor chips data.",
-        "Built a full-stack web application using React and Django, enabling product managers, sales teams, and engineers across 3 teams to compare features and track historical changes.",
+        "Architected and deployed real-time inventory management system using FastAPI and React, delivering LDAP secured access; streamlining operations for cross-functional teams; enabled efficient inventory control with user roles and automated email notifications, thus reducing inventory request processing time by 30%.",
+        "Developed a comprehensive JIRA Integration System using Django that automatically tracks code integration across repositories and branches, handling an average of 25+ daily commits and supporting 5+ repositories.",
+        "Redesigned Test Execution module using Angular v19 with NgRx state management and a multi-step hierarchical interface, reducing database API calls, decreasing setup time, and improving selection speed by 2 second to 3 millisecond by storing test case selections client-side rather than requiring constant MongoDB interactions.",
+        "Built a full-stack web application using React and Django, that enables product managers and sales teams across 3 teams to compare semiconductor chip features, track changes, and analyze data efficiently, to take decisions.",
       ],
       skills: [
         "Python",
-        "TypeScript",
         "FastAPI",
-        "React",
-        "Redux toolkit",
         "Django",
-        "LDAP",
-        "JIRA",
+        "React",
+        "TypeScript",
+        "Redux Toolkit",
+        "Angular",
+        "NgRx",
         "Svelte",
         "PostgreSQL",
-        "Git",
+        "MongoDB",
+        "LDAP",
+        "JIRA",
         "Bitbucket",
-        "Bitbucket webhooks",
+        "Bitbucket Webhooks",
+        "Git",
       ],
       color: "#0856A2",
-      logo: "path/to/logo.png",
+      logo: nxpLogo,
     },
     {
       title: "Software Engineer Intern",
@@ -83,22 +170,26 @@ const Work: React.FC = () => {
       description:
         "Blue Yonder is a leading provider of supply chain management solutions, leveraging AI and machine learning to optimize retail, logistics, and manufacturing operations.",
       achievements: [
-        "Led implementation of unit testing protocols, elevating software reliability across three high-impact projects, resulting in a zero-percent error in deployments.",
-        "Drove Backend-for-Frontend (BFF) implementation, reducing backend modifications and enabling effortless frontend customization, improving scalability.",
-        "Developed an advanced dialog interface with filtering and drag-and-drop features, driving 20% of progress in the cognitive assortment planning initiative, earning positive feedback from product owner for enhanced usability.",
+        "Developed an advanced dialog interface with filtering and interactive drag-drop features, driving 20% of cognitive assortment planning initiative progress.",
+        "Drove the Backend for Frontend architecture, minimizing backend changes, accelerating frontend development, and enabling seamless UI customization; improved scalability and adopted by two cross-functional teams.",
+        "Led the implementation of unit testing protocols, alleviated software reliability, and cut critical production issues, resulting in a flawless, zero-percent error in deployments.",
       ],
       skills: [
         "React",
+        "TypeScript",
         "Redux Toolkit",
         "Material-UI",
-        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS",
         "Jest",
         "BFF Architecture",
+        "REST APIs",
         "Git",
         "GitHub",
       ],
       color: "#231F20",
-      logo: "path/to/logo.png",
+      logo: blueYonderLogo,
     },
     {
       title: "Software Engineer",
@@ -109,23 +200,28 @@ const Work: React.FC = () => {
       description:
         "Amagi is a cloud-based SaaS provider that enables content owners, broadcasters, and streaming platforms to manage, distribute, and monetize video content efficiently.",
       achievements: [
-        "Enhanced user readability and accessibility by 90% by collaborating with UI/UX designers to meet NBCU and DAZN standards.",
-        "Optimized backend API calls by uniquely identifying notification messages, reducing backend load by 60-70%.",
-        "Launched a feature flagging solution to immediately cancel non-responsive API requests, supporting over 45 clients including NBCU, Samsung, and DraftKings.",
-        "Resolved 15+ user application bugs reported through JIRA, leading to a streamlined workflow and improved application performance.",
+        "Enhanced user readability and accessibility by up to 90% by collaborating with UI/UX designers to implement an optimal text-to-background contrast ratio, aligning with NBCUniversal's requirements.",
+        "Uniquely identified notification messages from a group of notifications and made a single API call that reduced the load on the backend server by the user interface by 60% - 70%.",
+        "Launched a feature flag mechanism enabling proactive cancellation of API requests, optimizing user experience by preventing delays caused by server latency which supported over 45 customers like DAZN and Samsung.",
+        "Identified and resolved 15+ user-reported application bugs through JIRA, streamlining workflows, boosting performance metrics, and enhancing overall customer experience.",
       ],
       skills: [
-        "Python",
         "React",
         "TypeScript",
+        "JavaScript",
         "Redux Toolkit",
+        "HTML",
+        "CSS",
+        "Python",
         "AWS",
+        "Cloud Services",
         "Cypress",
+        "JIRA",
         "Git",
         "GitHub",
       ],
       color: "#FF6B00",
-      logo: "path/to/logo.png",
+      logo: amagiLogo,
     },
     {
       title: "Software Engineer Intern",
@@ -140,17 +236,21 @@ const Work: React.FC = () => {
         "Developed test cases to validate Macros AD-TAG Replacement in Wrapper tags using Python Script for automation that reduced the time for execution of test cases by 20%.",
       ],
       skills: [
-        "Python",
         "React",
         "TypeScript",
+        "JavaScript",
         "Redux Toolkit",
+        "HTML",
+        "CSS",
+        "Python",
         "AWS",
-        "Cypress",
+        "Playwright",
+        "Test Automation",
         "Git",
         "GitHub",
       ],
       color: "#FF6B00",
-      logo: "path/to/logo.png",
+      logo: amagiLogo,
     },
   ];
 
@@ -470,20 +570,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
     >
       <CardContent sx={{ p: 3 }}>
         <Box sx={{ display: "flex", alignItems: "center", mb: 3, gap: 2 }}>
-          <Box
-            component="img"
-            src={experience.logo}
-            alt={experience.company}
-            sx={{
-              width: 70,
-              height: 70,
-              objectFit: "contain",
-              p: 1,
-              borderRadius: 2,
-              backgroundColor: "white",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
-            }}
-          />
+          <CompanyLogo src={experience.logo} alt={experience.company} />
           <Box>
             <Typography variant="h5" fontWeight={700}>
               {experience.company}
