@@ -83,10 +83,7 @@ const Home: React.FC = () => {
                 color="text.secondary"
                 sx={{ mb: 4, maxWidth: "90%" }}
               >
-                Building end-to-end software solutions from{" "}
-                <Box component="span" fontWeight={600} color="text.primary">
-                  backend APIs to frontend experiences
-                </Box>
+                Building end-to-end software solutions
               </Typography>
 
               <Typography

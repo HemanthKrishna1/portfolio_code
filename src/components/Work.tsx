@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   Chip,
-  Button,
   Grid,
   Divider,
   useTheme,
@@ -117,13 +116,13 @@ const Work: React.FC = () => {
         "PostgreSQL",
         "Docker",
         "Kubernetes",
+        "Maven",
         "Jest",
         "MSW",
-        "Maven",
         "Git",
         "GitHub",
       ],
-      color: "#231F20",
+      color: "#0856A2",
       logo: blueYonderLogo,
     },
     {
@@ -131,7 +130,7 @@ const Work: React.FC = () => {
       company: "NXP Semiconductors",
       location: "San Jose, CA",
       duration: "August 2024 - May 2025",
-      period: "Ongoing",
+      period: "10 months",
       description:
         "NXP Semiconductors is a global leader in secure connectivity solutions for embedded applications, driving innovation in automotive, industrial, IoT, and mobile industries.",
       achievements: [
@@ -141,21 +140,21 @@ const Work: React.FC = () => {
         "Built a full-stack web application using React and Django, that enables product managers and sales teams across 3 teams to compare semiconductor chip features, track changes, and analyze data efficiently, to take decisions.",
       ],
       skills: [
+        "React",
+        "Angular",
+        "Svelte",
+        "TypeScript",
+        "Redux Toolkit",
+        "NgRx",
         "Python",
         "FastAPI",
         "Django",
-        "React",
-        "TypeScript",
-        "Redux Toolkit",
-        "Angular",
-        "NgRx",
-        "Svelte",
         "PostgreSQL",
         "MongoDB",
         "LDAP",
-        "JIRA",
         "Bitbucket",
         "Bitbucket Webhooks",
+        "JIRA",
         "Git",
       ],
       color: "#0856A2",
@@ -177,18 +176,18 @@ const Work: React.FC = () => {
       skills: [
         "React",
         "TypeScript",
+        "JavaScript",
         "Redux Toolkit",
         "Material-UI",
-        "JavaScript",
         "HTML",
         "CSS",
-        "Jest",
         "BFF Architecture",
         "REST APIs",
+        "Jest",
         "Git",
         "GitHub",
       ],
-      color: "#231F20",
+      color: "#0856A2",
       logo: blueYonderLogo,
     },
     {
@@ -220,7 +219,7 @@ const Work: React.FC = () => {
         "Git",
         "GitHub",
       ],
-      color: "#FF6B00",
+      color: "#0856A2",
       logo: amagiLogo,
     },
     {
@@ -249,7 +248,7 @@ const Work: React.FC = () => {
         "Git",
         "GitHub",
       ],
-      color: "#FF6B00",
+      color: "#0856A2",
       logo: amagiLogo,
     },
   ];
@@ -499,27 +498,6 @@ const Work: React.FC = () => {
                     </Box>
                   </Box>
                 ))}
-
-                <Button
-                  variant="outlined"
-                  fullWidth
-                  component="a"
-                  href="/resume.pdf"
-                  target="_blank"
-                  sx={{
-                    mt: 2,
-                    py: 1.5,
-                    borderRadius: 2,
-                    fontWeight: 600,
-                    textTransform: "none",
-                    borderWidth: "2px",
-                    "&:hover": {
-                      borderWidth: "2px",
-                    },
-                  }}
-                >
-                  View Full Resume
-                </Button>
               </Box>
             </Grid>
 
