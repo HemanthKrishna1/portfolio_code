@@ -15,7 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-scroll";
 
-const navItems = ["Home", "Skills", "Projects", "Work", "Contact"];
+const navItems = ["Home", "Skills", "Work", "Projects", "Contact"];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);

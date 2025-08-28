@@ -27,7 +27,6 @@ import {
   Code,
   DesignServices,
   Storage,
-  DevicesOther,
 } from "@mui/icons-material";
 
 interface Project {
@@ -39,7 +38,7 @@ interface Project {
   liveUrl?: string;
   githubUrl: string;
   technologies: string[];
-  category: "frontend" | "backend" | "fullstack" | "mobile";
+  category: "frontend" | "backend" | "fullstack";
   features: string[];
   color: string;
 }
@@ -154,36 +153,7 @@ const Projects: React.FC = () => {
       ],
       color: "#f44336",
     },
-    {
-      id: 4,
-      title: "Weather Forecast App",
-      shortDescription:
-        "A mobile app providing detailed weather forecasts and alerts",
-      fullDescription:
-        "Developed a cross-platform mobile application that delivers accurate weather forecasts, severe weather alerts, and personalized notifications. The app uses geolocation for real-time updates and features an intuitive interface with interactive maps and detailed forecast information.",
-      image:
-        "https://via.placeholder.com/600x340/ff9800/ffffff?text=Weather+Forecast+App",
-      githubUrl: "https://github.com/yourgithub/weather-forecast",
-      technologies: [
-        "React Native",
-        "Redux",
-        "TypeScript",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "Weather API",
-      ],
-      category: "mobile",
-      features: [
-        "Geolocation for current weather conditions",
-        "7-day and hourly forecasts",
-        "Severe weather alerts",
-        "Customizable notifications",
-        "Interactive weather maps",
-        "Offline mode with cached data",
-      ],
-      color: "#ff9800",
-    },
+
     {
       id: 5,
       title: "E-commerce API",
@@ -264,8 +234,7 @@ const Projects: React.FC = () => {
         return <Storage />;
       case "fullstack":
         return <Code />;
-      case "mobile":
-        return <DevicesOther />;
+
       default:
         return <Code />;
     }
@@ -279,8 +248,7 @@ const Projects: React.FC = () => {
         return "Backend";
       case "fullstack":
         return "Full Stack";
-      case "mobile":
-        return "Mobile";
+
       default:
         return categoryName;
     }
@@ -374,7 +342,6 @@ const Projects: React.FC = () => {
               <Tab label="Frontend" value="frontend" />
               <Tab label="Backend" value="backend" />
               <Tab label="Full Stack" value="fullstack" />
-              <Tab label="Mobile" value="mobile" />
             </Tabs>
           </Box>
         </Box>

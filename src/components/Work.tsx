@@ -21,9 +21,9 @@ import {
   KeyboardArrowRight,
   Business as BusinessIcon,
 } from "@mui/icons-material";
-import nxpLogo from "../assets/logos/nxp.png";
-import amagiLogo from "../assets/logos/amagi.png";
-import blueYonderLogo from "../assets/logos/blueyonder.png";
+import nxpLogo from "../assets/logos/NXP_Logo.png";
+import amagiLogo from "../assets/logos/Amagi.png";
+import blueYonderLogo from "../assets/logos/BY.png";
 
 interface WorkExperience {
   title: string;
@@ -130,7 +130,7 @@ const Work: React.FC = () => {
       title: "Software Engineer Intern",
       company: "NXP Semiconductors",
       location: "San Jose, CA",
-      duration: "August 2024 - Present",
+      duration: "August 2024 - May 2025",
       period: "Ongoing",
       description:
         "NXP Semiconductors is a global leader in secure connectivity solutions for embedded applications, driving innovation in automotive, industrial, IoT, and mobile industries.",

@@ -55,7 +55,7 @@ const Home: React.FC = () => {
                 color="primary.main"
                 sx={{ mb: 2, letterSpacing: "0.05em", opacity: 0.9 }}
               >
-                FULL-STACK DEVELOPER
+                SOFTWARE ENGINEER
               </Typography>
 
               <Typography
@@ -83,9 +83,9 @@ const Home: React.FC = () => {
                 color="text.secondary"
                 sx={{ mb: 4, maxWidth: "90%" }}
               >
-                Building powerful software applications with the{" "}
+                Building end-to-end software solutions from{" "}
                 <Box component="span" fontWeight={600} color="text.primary">
-                  modern tech stack
+                  backend APIs to frontend experiences
                 </Box>
               </Typography>
 
@@ -99,10 +99,13 @@ const Home: React.FC = () => {
                   maxWidth: "90%",
                 }}
               >
-                I specialize in creating responsive, performant applications
-                with clean, maintainable code. Currently pursuing a Master's in
-                Information Technology & Management at UT Dallas while building
-                solutions that make a difference.
+                I specialize in developing full-stack applications with
+                expertise in both frontend and backend technologies. From
+                designing scalable APIs and database architectures to creating
+                intuitive user interfaces, I build complete software solutions.
+                Currently working as a Software Engineer I at Blue Yonder and
+                have completed my Master's in Information Technology &
+                Management at UT Dallas.
               </Typography>
 
               <Box
