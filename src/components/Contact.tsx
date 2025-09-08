@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Container,
@@ -10,6 +10,7 @@ import {
   IconButton,
   Snackbar,
   Alert,
+  CircularProgress,
 } from "@mui/material";
 import {
   Email,
@@ -19,6 +20,8 @@ import {
   Phone,
   Send,
 } from "@mui/icons-material";
+import emailjs from "@emailjs/browser";
+import { emailConfig } from "../config/email";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +34,12 @@ const Contact: React.FC = () => {
     message: "",
     severity: "success" as "success" | "error",
   });
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(emailConfig.publicKey);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,21 +48,60 @@ const Contact: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    // Here you would normally send the form data to your backend
-    console.log("Form submitted:", formData);
+    try {
+      // Check if EmailJS is configured
+      if (
+        !emailConfig.serviceId ||
+        !emailConfig.templateId ||
+        !emailConfig.publicKey
+      ) {
+        throw new Error(
+          "EmailJS not configured. Please check your environment variables."
+        );
+      }
 
-    // Show success message
-    setSnackbar({
-      open: true,
-      message: "Thank you! Your message has been sent successfully.",
-      severity: "success",
-    });
+      // Prepare template parameters to match your EmailJS template
+      const templateParams = {
+        name: formData.name, // Matches {{name}} in your template
+        email: formData.email, // Sender's email for reply-to
+        message: formData.message, // Matches {{message}} in your template
+        time: new Date().toLocaleString(), // Matches {{time}} in your template
+        subject: `New Contact Form Message from ${formData.name}`, // Complete subject line
+        from_name: formData.name, // Additional parameter for clarity
+        reply_to: formData.email, // Clear reply-to email
+      };
 
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+      // Send email using EmailJS with custom template
+      await emailjs.send(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        templateParams,
+        emailConfig.publicKey
+      );
+
+      // Show success message
+      setSnackbar({
+        open: true,
+        message: "Thank you! Your message has been sent successfully.",
+        severity: "success",
+      });
+
+      // Reset form
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      setSnackbar({
+        open: true,
+        message:
+          "Sorry, there was an error sending your message. Please try again or contact me directly.",
+        severity: "error",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleClose = () => {
@@ -346,7 +394,14 @@ const Contact: React.FC = () => {
                     variant="contained"
                     color="primary"
                     size="large"
-                    endIcon={<Send />}
+                    disabled={isLoading}
+                    endIcon={
+                      isLoading ? (
+                        <CircularProgress size={20} color="inherit" />
+                      ) : (
+                        <Send />
+                      )
+                    }
                     sx={{
                       py: 1.5,
                       px: 4,
@@ -355,13 +410,15 @@ const Contact: React.FC = () => {
                       fontWeight: 600,
                       boxShadow: "0 10px 20px rgba(33, 150, 243, 0.2)",
                       "&:hover": {
-                        transform: "translateY(-3px)",
-                        boxShadow: "0 15px 25px rgba(33, 150, 243, 0.3)",
+                        transform: isLoading ? "none" : "translateY(-3px)",
+                        boxShadow: isLoading
+                          ? "0 10px 20px rgba(33, 150, 243, 0.2)"
+                          : "0 15px 25px rgba(33, 150, 243, 0.3)",
                       },
                       transition: "all 0.3s ease",
                     }}
                   >
-                    Send Message
+                    {isLoading ? "Sending..." : "Send Message"}
                   </Button>
                 </Grid>
               </Grid>
@@ -371,7 +428,7 @@ const Contact: React.FC = () => {
 
         <Box
           sx={{
-            mt: 8,
+            mt: "120px",
             pt: 4,
             pb: 2,
             textAlign: "center",
