@@ -14,20 +14,9 @@ import {
   DialogContent,
   DialogActions,
   IconButton,
-  Tabs,
-  Tab,
-  useTheme,
-  useMediaQuery,
   Fade,
 } from "@mui/material";
-import {
-  GitHub,
-  Language,
-  Close,
-  Code,
-  DesignServices,
-  Storage,
-} from "@mui/icons-material";
+import { GitHub, Close } from "@mui/icons-material";
 
 interface Project {
   id: number;
@@ -35,19 +24,14 @@ interface Project {
   shortDescription: string;
   fullDescription: string;
   image: string;
-  liveUrl?: string;
   githubUrl: string;
   technologies: string[];
-  category: "frontend" | "backend" | "fullstack";
   features: string[];
   color: string;
 }
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [category, setCategory] = useState("all");
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleOpenProject = (project: Project) => {
     setSelectedProject(project);
@@ -55,10 +39,6 @@ const Projects: React.FC = () => {
 
   const handleCloseProject = () => {
     setSelectedProject(null);
-  };
-
-  const handleCategoryChange = (_: React.SyntheticEvent, newValue: string) => {
-    setCategory(newValue);
   };
 
   const projects: Project[] = [
@@ -72,7 +52,6 @@ const Projects: React.FC = () => {
       image:
         "https://via.placeholder.com/600x340/3f51b5/ffffff?text=Inventory+Management",
       githubUrl: "https://github.com/yourgithub/inventory-management",
-      liveUrl: "https://example.com/demo-inventory",
       technologies: [
         "React",
         "Redux",
@@ -82,7 +61,6 @@ const Projects: React.FC = () => {
         "JWT",
         "Material-UI",
       ],
-      category: "fullstack",
       features: [
         "Role-based access control system",
         "Real-time inventory tracking",
@@ -111,7 +89,6 @@ const Projects: React.FC = () => {
         "Express",
         "MongoDB",
       ],
-      category: "frontend",
       features: [
         "Book catalog with search and filter functionality",
         "Customer management system",
@@ -124,34 +101,32 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: "Cognitive Assortment",
+      title: "gRPC in Rust Implementation",
       shortDescription:
-        "Implemented an advanced drag-and-drop UI for product assortment",
+        "A simple gRPC service implementation in Rust using Tonic framework",
       fullDescription:
-        "Created a sophisticated drag-and-drop interface for a supply chain platform, allowing merchandisers to efficiently manage product assortments across multiple stores. The UI includes real-time updates, conflict resolution, and performance optimizations for handling large datasets. The backend integrates with complex business logic for inventory management and distribution planning.",
+        "Built a high-performance gRPC service in Rust using the Tonic framework. The service demonstrates modern microservices architecture with Protocol Buffers for efficient serialization, async runtime with Tokio, and environment-based configuration. Includes comprehensive testing setup with grpcurl and Postman integration for service validation.",
       image:
-        "https://via.placeholder.com/600x340/f44336/ffffff?text=Cognitive+Assortment",
-      githubUrl: "https://github.com/yourgithub/cognitive-assortment",
-      liveUrl: "https://example.com/demo-assortment",
+        "https://via.placeholder.com/600x340/ff9800/ffffff?text=gRPC+Service",
+      githubUrl: "https://github.com/yourgithub/grpc-hello-world",
       technologies: [
-        "React",
-        "TypeScript",
-        "GraphQL",
-        "Python",
-        "Django",
-        "PostgreSQL",
-        "Redis",
+        "Rust",
+        "Tonic",
+        "Protocol Buffers",
+        "Tokio",
+        "gRPC",
+        "Prost",
+        "Dotenv",
       ],
-      category: "fullstack",
       features: [
-        "Interactive drag-and-drop interface",
-        "Real-time collaboration features",
-        "Versioning and change history",
-        "Performance optimizations for large datasets",
-        "Advanced filtering and search capabilities",
-        "Visual analytics dashboard",
+        "High-performance gRPC service implementation",
+        "Protocol Buffers for efficient data serialization",
+        "Async runtime with Tokio for concurrent handling",
+        "Environment-based configuration management",
+        "Comprehensive testing with grpcurl and Postman",
+        "Clean project structure with proto definitions",
       ],
-      color: "#f44336",
+      color: "#ff9800",
     },
 
     {
@@ -173,7 +148,6 @@ const Projects: React.FC = () => {
         "Docker",
         "AWS",
       ],
-      category: "backend",
       features: [
         "Secure user authentication and authorization",
         "Product catalog with advanced search capabilities",
@@ -194,7 +168,6 @@ const Projects: React.FC = () => {
       image:
         "https://via.placeholder.com/600x340/673ab7/ffffff?text=Portfolio+Website",
       githubUrl: "https://github.com/yourgithub/portfolio",
-      liveUrl: "https://yourdomain.com",
       technologies: [
         "React",
         "TypeScript",
@@ -202,7 +175,6 @@ const Projects: React.FC = () => {
         "Framer Motion",
         "Netlify",
       ],
-      category: "frontend",
       features: [
         "Responsive design for all screen sizes",
         "Dark/light mode toggle",
@@ -215,43 +187,12 @@ const Projects: React.FC = () => {
     },
   ];
 
-  const filteredProjects = projects.filter((project) => {
-    if (category === "all") return true;
-    return project.category === category;
-  });
+  const filteredProjects = projects;
 
   const getProjectImage = (project: Project) => {
     return {
       backgroundImage: `linear-gradient(135deg, ${project.color}80 0%, ${project.color}50 100%)`,
     };
-  };
-
-  const getCategoryIcon = (categoryName: string) => {
-    switch (categoryName) {
-      case "frontend":
-        return <DesignServices />;
-      case "backend":
-        return <Storage />;
-      case "fullstack":
-        return <Code />;
-
-      default:
-        return <Code />;
-    }
-  };
-
-  const getCategoryLabel = (categoryName: string) => {
-    switch (categoryName) {
-      case "frontend":
-        return "Frontend";
-      case "backend":
-        return "Backend";
-      case "fullstack":
-        return "Full Stack";
-
-      default:
-        return categoryName;
-    }
   };
 
   return (
@@ -316,34 +257,6 @@ const Projects: React.FC = () => {
             Explore some of my recent work across various technologies and
             domains.
           </Typography>
-
-          <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-            <Tabs
-              value={category}
-              onChange={handleCategoryChange}
-              variant={isMobile ? "scrollable" : "standard"}
-              scrollButtons="auto"
-              aria-label="project categories"
-              sx={{
-                "& .MuiTabs-indicator": {
-                  height: 3,
-                  borderRadius: 1.5,
-                },
-                "& .MuiTab-root": {
-                  textTransform: "none",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                  minWidth: isMobile ? "auto" : 120,
-                  px: isMobile ? 1 : 3,
-                },
-              }}
-            >
-              <Tab label="All Projects" value="all" />
-              <Tab label="Frontend" value="frontend" />
-              <Tab label="Backend" value="backend" />
-              <Tab label="Full Stack" value="fullstack" />
-            </Tabs>
-          </Box>
         </Box>
 
         <Grid container spacing={4}>
@@ -419,26 +332,6 @@ const Projects: React.FC = () => {
                         >
                           View Details
                         </Button>
-                      </Box>
-
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          top: 16,
-                          right: 16,
-                          backgroundColor: "rgba(255,255,255,0.9)",
-                          borderRadius: 20,
-                          px: 1.5,
-                          py: 0.5,
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 0.5,
-                        }}
-                      >
-                        {getCategoryIcon(project.category)}
-                        <Typography variant="caption" fontWeight={600}>
-                          {getCategoryLabel(project.category)}
-                        </Typography>
                       </Box>
                     </CardMedia>
                   </Box>
@@ -553,15 +446,6 @@ const Projects: React.FC = () => {
                     <Close />
                   </IconButton>
                 </Box>
-                <Chip
-                  icon={getCategoryIcon(selectedProject.category)}
-                  label={getCategoryLabel(selectedProject.category)}
-                  sx={{
-                    mt: 1,
-                    backgroundColor: "rgba(33, 150, 243, 0.1)",
-                    fontWeight: 500,
-                  }}
-                />
               </DialogTitle>
               <DialogContent dividers>
                 <Typography variant="body1" color="text.secondary" paragraph>
@@ -655,28 +539,6 @@ const Projects: React.FC = () => {
                 >
                   View on GitHub
                 </Button>
-                {selectedProject.liveUrl && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<Language />}
-                    href={selectedProject.liveUrl}
-                    target="_blank"
-                    sx={{
-                      borderRadius: 30,
-                      px: 3,
-                      py: 1,
-                      fontWeight: 600,
-                      textTransform: "none",
-                      boxShadow: "0 4px 12px rgba(33, 150, 243, 0.2)",
-                      "&:hover": {
-                        boxShadow: "0 8px 15px rgba(33, 150, 243, 0.3)",
-                      },
-                    }}
-                  >
-                    Live Demo
-                  </Button>
-                )}
               </DialogActions>
             </>
           )}
