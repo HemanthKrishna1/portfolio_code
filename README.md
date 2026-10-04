@@ -1,154 +1,76 @@
 # Hemanth Krishna - Portfolio Website
 
-A modern, responsive portfolio website built with React, TypeScript, and Vite. Features a working contact form with EmailJS integration.
+A modern, responsive portfolio website showcasing my skills, projects, and experience. Built with React, TypeScript, and Material-UI, featuring a fully functional contact form.
 
-## 🚀 Getting Started
+🌐 **Live Demo**: [hemanthkrishna1.github.io/portfolio_code](https://hemanthkrishna1.github.io/portfolio_code/)
 
-1. **Clone the repository**
+## ✨ Features
 
-   ```bash
-   git clone <your-repo-url>
-   cd portfolio_code
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   Create a `.env` file in the root directory with your EmailJS credentials:
-
-   ```env
-   VITE_EMAILJS_SERVICE_ID=your_service_id_here
-   VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
-   VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-## 🚀 Deployment to GitHub Pages
-
-This project is configured to automatically deploy to GitHub Pages using GitHub Actions.
-
-### Setup Steps:
-
-1. **Add Repository Secrets**
-
-   - Go to your GitHub repository
-   - Navigate to **Settings** → **Secrets and variables** → **Actions**
-   - Click **New repository secret** and add these three secrets with your actual EmailJS values:
-     ```
-     VITE_EMAILJS_SERVICE_ID = your_service_id_here
-     VITE_EMAILJS_TEMPLATE_ID = your_template_id_here
-     VITE_EMAILJS_PUBLIC_KEY = your_public_key_here
-     ```
-
-2. **Enable GitHub Pages**
-
-   - Go to **Settings** → **Pages**
-   - Under **Source**, select **GitHub Actions**
-
-3. **Deploy**
-   - Push your changes to the `main` branch
-   - The GitHub Action will automatically build and deploy your site
-   - Your site will be available at: `https://yourusername.github.io/portfolio_code/`
-
-### Manual Deployment (Alternative)
-
-If you prefer manual deployment:
-
-```bash
-npm run build
-# Then manually upload the dist/ folder contents to your hosting provider
-```
-
-## 📧 EmailJS Setup
-
-To enable the contact form functionality:
-
-1. Create an account at [EmailJS](https://www.emailjs.com/)
-2. Set up an email service (Gmail, Outlook, etc.)
-3. Create an email template
-4. Get your Service ID, Template ID, and Public Key
-5. Add these to your `.env` file
+- **Responsive Design** - Works seamlessly on all devices
+- **Modern UI/UX** - Clean, professional interface with smooth animations
+- **Working Contact Form** - Integrated with EmailJS for direct messaging
+- **Project Showcase** - Interactive portfolio of my work
+- **Skills & Experience** - Comprehensive overview of my technical expertise
 
 ## 🛠️ Built With
 
 - **React** - UI Library
 - **TypeScript** - Type Safety
-- **Vite** - Build Tool
 - **Material-UI** - Component Library
-- **EmailJS** - Email Service
-- **Framer Motion** - Animations
+- **Vite** - Build Tool & Development Server
+- **EmailJS** - Contact Form Integration
+- **Framer Motion** - Smooth Animations
+- **GitHub Pages** - Hosting & Deployment
 
-## 📁 Project Structure
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/HemanthKrishna1/portfolio_code.git
+cd portfolio_code
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## 📧 Contact Form Setup
+
+To enable the contact form functionality:
+
+1. Create an [EmailJS](https://www.emailjs.com/) account
+2. Set up an email service and template
+3. Add your credentials as GitHub repository secrets:
+   - `VITE_EMAILJS_SERVICE_ID`
+   - `VITE_EMAILJS_TEMPLATE_ID`
+   - `VITE_EMAILJS_PUBLIC_KEY`
+
+## 📂 Project Structure
 
 ```
 src/
-├── components/          # React components
+├── components/
 │   ├── Contact.tsx     # Contact form with EmailJS
 │   ├── Home.tsx        # Hero section
 │   ├── Navbar.tsx      # Navigation
-│   ├── Projects.tsx    # Projects showcase
-│   ├── Skills.tsx      # Skills section
+│   ├── Projects.tsx    # Project showcase
+│   ├── Skills.tsx      # Technical skills
 │   └── Work.tsx        # Work experience
-├── config/             # Configuration files
+├── config/
 │   └── email.ts        # EmailJS configuration
-└── assets/             # Static assets
+└── assets/             # Images and static files
 ```
 
-Currently, two official plugins are available:
+## 🚀 Deployment
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project automatically deploys to GitHub Pages via GitHub Actions. Simply push to the `main` branch and your changes will be live!
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Connect with me:**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
-```
+- 📧 Email: k.hemanth1999@gmail.com
+- 💼 LinkedIn: [linkedin.com/in/hemanth-krishna-](https://www.linkedin.com/in/hemanth-krishna-/)
+- 🐱 GitHub: [github.com/HemanthKrishna1](https://github.com/HemanthKrishna1)

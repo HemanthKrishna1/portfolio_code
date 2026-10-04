@@ -1,20 +1,27 @@
-import Contact from "./components/Contact";
-import Home from "./components/Home";
-import Navbar from "./components/Navbar";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import Work from "./components/Work";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "./theme";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import Hero from "./sections/Hero";
+import Skills from "./sections/Skills";
+import Experience from "./sections/Experience";
+import Projects from "./sections/Projects";
+import Contact from "./sections/Contact";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Home />
-      <Skills />
-      <Work />
-      <Projects />
-      <Contact />
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header />
+      <main>
+        <Hero />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+    </ThemeProvider>
   );
 }
 
